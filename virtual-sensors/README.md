@@ -8,4 +8,5 @@ The simulation represents a virtual environmental station that periodically gene
 5. rain height (0 ... 50 mm / h) 
 
 Each virtual sensor should publish these random values on an MQTT channel.
+
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment1
