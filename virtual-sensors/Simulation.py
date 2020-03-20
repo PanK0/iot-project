@@ -29,8 +29,7 @@ client1.on_publish = on_publish                     # assign function to callbac
 client1.username_pw_set(ACCESS_TOKEN)               # access token from thingsboard device
 client1.connect(broker,port,keepalive=60)           # establish connection
 
-while True:
-  
+while True:  
    payload = env_station_A.getPayload()
    ret= client1.publish("v1/devices/me/telemetry",payload) # topic-v1/devices/me/telemetry
    print("Please check LATEST TELEMETRY field of your device")
