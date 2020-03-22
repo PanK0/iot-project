@@ -1,52 +1,29 @@
-# This Program illustrates the Simple Server Side RPC on ThingsBoard IoT Platform
-# Paste your ThingsBoard IoT Platform IP and Device access token
-# RPC Server_Side_RPC.py : This Program will illustrates the Server side RPC
-import os
-import time
-import sys
-import json
-import random
 import paho.mqtt.client as mqtt
+import time
 
-# Thingsboard platform credentials
-THINGSBOARD_HOST = "demo.thingsboard.io" 
-ACCESS_TOKEN = 'vgFztmvT6bps7JCeOEZq'
-button_state = {"enabled": False}
+dev_id = "c4ef1ec0-6a98-11ea-8e0a-7d0ef2a682d3"
+token = "vgFztmvT6bps7JCeOEZq"
+broker="demo.thingsboard.io"                        # host name
+port=1883
+topic = "v1/devices/me/telemetry"
 
-def setValue (params):
-    button_state['enabled'] = params
-    print("Rx setValue is : ",button_state)
-
-# MQTT on_connect callback function
-def on_connect(client, userdata, flags, rc):
-    print("rc code:",rc)
-    client.subscribe('v1/devices/me/rpc/request/+')
+# The callback for when the client receives a CONNACK response from the server.
+def on_connect(client, userdata, flags, rc) :
+    if (rc==0) :
+        print("connected OK Returned code = ", rc)
+    else :
+        print("Bad connection Returned code = ", rc)
     
-# MQTT on_message caallback function
-def on_message(client, userdata, msg):
-    print('Topic: ' + msg.topic + '\nMessage: ' + str(msg.payload))
-    if msg.topic.startswith('v1/devices/me/rpc/request/'):
-        requestId = msg.topic[len('v1/devices/me/rpc/request/'):len(msg.topic)]
-        print("requestId : ",requestId)
-        data = json.loads(msg.payload)
-        if data['method'] == 'getValue':
-            print("getvalue request\n")
-            print("sent getValue : ",button_state)
-            client.publish('v1/devices/me/rpc/response/'+requestId, json.dumps(button_state), 1)
-        if data['method'] == 'setValue':
-            print("setvalue request\n")
-            params = data['params']
-            setValue(params)
-            client.publish('v1/devices/me/attributes', json.dumps(button_state), 1)
+def on_message(client, userdata, msg) :
+    print (msg.topic + " " + str(msg.payload))    
 
-# start the client instance
+
 client = mqtt.Client()
-
-# registering the callbacks
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.username_pw_set(ACCESS_TOKEN)
-client.connect(THINGSBOARD_HOST,1883,60)
+client.username_pw_set(token)
+client.connect(broker , port, 60)
+client.subscribe("aa")
 
 client.loop_forever()

@@ -27,7 +27,7 @@ def on_publish(client,userdata,result):             # create function for callba
     pass
 
 # Setting Up Client A
-client_A= paho.Client("control1")                    # create client object
+client_A = paho.Client("control1")                    # create client object
 client_A.on_publish = on_publish                     # assign function to callback
 client_A.username_pw_set(ACCESS_TOKEN_A)               # access token from thingsboard device
 client_A.connect(broker,port,keepalive=60)           # establish connection
