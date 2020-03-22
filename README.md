@@ -5,5 +5,5 @@ Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment1
 ### /virtual-sensors
 - pahp-mqtt @ https://pypi.org/project/paho-mqtt/
 
-### /Web_View
+### /web_view
 - django @ https://www.djangoproject.com/
