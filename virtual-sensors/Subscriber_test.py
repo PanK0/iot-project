@@ -1,3 +1,4 @@
+
 import paho.mqtt.client as mqtt
 import time
 
@@ -24,6 +25,9 @@ client.on_message = on_message
 
 client.username_pw_set(token)
 client.connect(broker , port, 60)
-client.subscribe("aa")
+client.subscribe(topic)
 
-client.loop_forever()
+while True:
+    client.subscribe(topic)
+    print (client)
+    time.sleep(2)
