@@ -1,12 +1,15 @@
-<html>
-  <head>
-    <title></title>
-    <meta content="">
-    <style></style>
-  </head>
-  <body>
-  
-    <h1> Blog Home </h1>
+{% extends "web_view/base.html" %}
+{% block content %} 
+
+    <h1> Home </h1>
+    <p>
+        This is the real time graph of of the Environmental Station Simulation
+    </p>
     
-  </body>
-</html>
+{% endblock content %}
+
+{% block corpus %}
+
+    <iframe src="https://demo.thingsboard.io/dashboard/3406b610-6aa3-11ea-8e0a-7d0ef2a682d3?publicId=623f71c0-6aa3-11ea-8e0a-7d0ef2a682d3" width="200%" class="myIframe"> </iframe>
+
+{% endblock corpus %}
