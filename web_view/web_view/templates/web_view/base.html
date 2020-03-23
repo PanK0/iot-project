@@ -22,6 +22,7 @@
   
     <meta content="">
     <style></style>
+    
   </head>
   <body>
   
@@ -36,9 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
             <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
-<!--            
-            <a class="nav-item nav-link" href="/about">About</a>
--->
+            <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -74,7 +73,7 @@
             </p>
         </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" id="board">
         
             {% block corpus %} {% endblock %}
             
@@ -90,7 +89,24 @@
 
     <!-- iframe regolation script -->
     <script type="text/javascript" language="javascript"> 
-    $('.myIframe').css('height', $(window).height() -300 + 'px');
+        $('.myIframe').css('height', $(window).height() -300 + 'px');
+    </script>
+    
+    <!-- show/hide divs -->    
+    <script type="text/javascript" language="javascript"> 
+        function showhide(id) {
+            var e = document.getElementById(id);
+            e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+        }
+        
+        window.onload = function() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('temperature').style.display = 'none';
+            document.getElementById('humidity').style.display = 'none';
+            document.getElementById('wind').style.display = 'none';
+            document.getElementById('rain').style.display = 'none';
+        };
+        
     </script>
     
   </body>
