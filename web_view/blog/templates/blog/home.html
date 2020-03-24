@@ -1,6 +1,45 @@
 {% extends "blog/base.html" %}
 {% block content %} 
 
-    <h1> Blog Home </h1>
+    <h1> Blog </h1>
+    
+    <p> 
+        In this post I'm going to present you how to setup the code to run the final product.
+        </br>
+        As you can see on my <a href="https://github.com/PanK0/iot-project.git">Github Page</a> the entire project is divided into two main topics:
+         <ul>
+            <li>Virtual Sensors</li>
+            <li>Web Application</li>
+        </ul> 
+        
+        </br>
+        
+        In <b> virtual-sensors </b> folder you can find some python scripts that simulate two different environmental station sending data about weather conditions.
+        </br>
+        In <b> web_view </b> there's the web application useful to monitor the environmental station data.
+        </br>
+        
+    </p>
+    
+    <hr>
+    
+    <p>
+        <h2> How it works </h2>
+        The system communicates via MQTT protocol with <a href="https://demo.thingsboard.io/login">Thingsboard</a>, an online platform that act as MQTT broker and lets the final user to see the registered data.
+        
+        </br>
+        
+        Once the Environmental Stations Simulation is running it sends random generated data to Thingsboard that displays them in dedicated dashboards that can be viewed by the final user.
+        
+        </br> </br>
+        
+        <img src="https://user-images.githubusercontent.com/30205233/46252270-37cca900-c499-11e8-894c-c70e20a6e1ab.png" alt="Trulli" width="100%" height="333">
+        
+    </p>
+    
+    <p>
+        <h2> Thingsboard Setup </h2>
+        
+    </p>
 
 {% endblock content %}
