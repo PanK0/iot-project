@@ -7,7 +7,18 @@ Using your favorite programming language and web development libraries develop a
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment1
 
 ## How To
-If you're running this on your local machine:
+### If you're running this on your local machine:
+- Open the settings.py file at web_view/settings.py
+- Comment the first DEBUG variable and uncomment the seconde one
+
+```
+# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = True
+```
+- Run the server 
+
 ```
 python manage.py runserver
 ```
+### If you want to go in the web app:
+Go @ https://iotwebapp.herokuapp.com/
