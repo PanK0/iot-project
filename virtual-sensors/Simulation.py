@@ -33,7 +33,7 @@ ACCESS_TOKEN_A = 'vgFztmvT6bps7JCeOEZq'                # Token of device A
 ACCESS_TOKEN_B = 'BKJK0j5zVyh3hIkCBWDI'                # Token of device B
 broker = "demo.thingsboard.io"                         # host name
 topic = "v1/devices/me/telemetry"
-port = 1883                                       # data listening port
+port = 1883                                            # data listening port
 
 def on_publish(client,userdata,result):             # create function for callback
     print("data published to thingsboard \n")
