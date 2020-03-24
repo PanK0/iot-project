@@ -7,7 +7,7 @@
         In this post I'm going to present you how to setup the code to run the final product.
         </br>
         As you can see on my <a href="https://github.com/PanK0/iot-project.git">Github Page</a> the entire project is divided into two main topics:
-         <ul>
+        <ul>
             <li>Virtual Sensors</li>
             <li>Web Application</li>
         </ul> 
@@ -25,7 +25,8 @@
     
     <p>
         <h2> How it works </h2>
-        The system communicates via MQTT protocol with <a href="https://demo.thingsboard.io/login">Thingsboard</a>, an online platform that act as MQTT broker and lets the final user to see the registered data.
+        
+        The system communicates via MQTT protocol with <a href="https://demo.thingsboard.io/login">Thingsboard</a>, an online platform that act as MQTT broker and lets the final user to see the registered data though simple dashboards.
         
         </br>
         
@@ -37,8 +38,17 @@
         
     </p>
     
+    <hr>
+    
     <p>
-        <h2> Thingsboard Setup </h2>
+        <h2> Requirements </h2>
+        
+        To make the project correctly work some things are required.
+        <ul>
+            <li><a href="https://pypi.org/project/paho-mqtt/">paho-mqtt</a> needed for the MQTT communication for the python scripts with the broker</li> 
+            <li><a href="https://www.djangoproject.com/">django</a> to run the web application</li> 
+             <li><a href="https://demo.thingsboard.io/login">Thingsboard</a> account for the dashboards views</li> 
+        </ul> 
         
     </p>
 
