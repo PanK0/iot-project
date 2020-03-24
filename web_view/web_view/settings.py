@@ -24,7 +24,7 @@ SECRET_KEY = 'iw&fkx+ae(ct)-!b5h-za*3h!3slu!i)0w9bvb6))zzw)*z+xo'
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['iotwebapp.herokuapp.com', 'localhost', '127.0.0.1']
 
