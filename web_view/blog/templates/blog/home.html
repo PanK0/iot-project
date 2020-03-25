@@ -1,31 +1,9 @@
 {% extends "blog/base.html" %}
 {% block content %} 
 
-    <h1> Blog </h1>
-    
-    <p> 
-        In this post I'm going to present you how to setup the code to run the final product.
-        </br>
-        As you can see on my <a href="https://github.com/PanK0/iot-project.git">Github Page</a> the entire project is divided into two main topics:
-        <ul>
-            <li>Virtual Sensors</li>
-            <li>Web Application</li>
-        </ul> 
-        
-        </br>
-        
-        In <b> virtual-sensors </b> folder you can find some python scripts that simulate two different environmental station sending data about weather conditions.
-        </br>
-        In <b> web_view </b> there's the web application useful to monitor the environmental station data.
-        </br>
-        
-    </p>
-    
-    <hr>
+    <h1> Video Presentation </h1>
     
     <p>
-    
-        <h2> Video Presentation </h2>
         
         <iframe width="560" height="315" src="https://www.youtube.com/embed/rgGRoJ8GJn4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     
@@ -37,124 +15,15 @@
 
 {% block corpus %}
 
-<p>
+    <hr>
 
-        <hr>
-        
-        <h2> How it works </h2>
-        
-        The system communicates via MQTT protocol with <a href="https://demo.thingsboard.io/login">Thingsboard</a>, an online platform that act as MQTT broker and lets the final user to see the registered data though simple dashboards.
-        
-        </br>
-        
-        Once the Environmental Stations Simulation is running it sends random generated data to Thingsboard that displays them in dedicated dashboards that can be viewed by the final user.
-        
-        </br> </br>
-        
-        <img src="https://user-images.githubusercontent.com/30205233/46252270-37cca900-c499-11e8-894c-c70e20a6e1ab.png" width="80%" height="333">
-        
-    </p>
+    <h2> Check the project on Hackster.io! </h2>
     
-    <hr>
-    
-    <p>
-        <h2> Requirements </h2>
-        
-        To make the project correctly work some things are required.
-        <ul>
-            <li><a href="https://pypi.org/project/paho-mqtt/">paho-mqtt</a> needed for the MQTT communication for the python scripts with the broker</li> 
-            <li><a href="https://www.djangoproject.com/">django</a> to run the web application</li> 
-             <li><a href="https://demo.thingsboard.io/login">Thingsboard</a> account for the dashboards views</li> 
-        </ul> 
-        
-        The entire project has been developed and tested on GNU/Linux and it's not supposed to work out of the box for Windows or Mac OS.
-        
-    </p>
-    
-    <hr>
-    
-    <p>
-    
-        <h2> Thingsboard and the Code </h2>
-        
-        To obtain access to the MQTT broker and to te dashboard functionalities you have to register an account to the  <a href="https://demo.thingsboard.io/login">Thingsboard</a> Demo platform.
-        
-        </br>
-        
-        Once registered to the service you will have access to the user tenant panel.
-        </br>
-        Click on the <b> DEVICES </b> section and then add a new device by clicking on the <b> red button </b>in the down right side of the screen. In my case I have added two devices named "Environmental Station A" and "Environmental Station B".
-        
-        </br>
-        
-        Now it's time to get the device's <b> access token </b> to set up the paho communication client on the python Virtual Environmental Station: to do this click on the shield icon of the device and copy the <b> access token </b> as shown in the picture.
-        
-        </br> </br>
-        
-        <img src='https://i.postimg.cc/4Nj16jHv/Screenshot-2020-03-24-Things-Board-Devices.png' border='0' alt='Screenshot-2020-03-24-Things-Board-Devices' width="80%" height="333" >
-        
-        </br> </br>
-        
-        Then open the <i><a href="https://github.com/PanK0/iot-project/blob/master/virtual-sensors/Simulation.py"> Simulation.py </a></i> script in the folder <i> <a href="https://github.com/PanK0/iot-project/tree/master/virtual-sensors"> virtual-sensors/ </a></i> and change the values of the variables with your device's values as shown in figure.
-        
-        
-        </br> </br>
-        
-        <img src='https://i.postimg.cc/255vPfJB/aa.png' border='0' width='80%' >        
-    
-    </p>
-    
-    <hr>
-    
-    <p>
-    
-        <h2> The Dashboards </h2>
-        
-        To enjoy the data stream you have to create the dashboards of the device.
-        </br>
-        Start sending the data by running the <i> Simulation.py </i> script on your local machine.
-        </br>
-        Then go to <b> DEVICES </b>, click on your device's card and then go in the <b> TELEMETRY </b> spot: if you have run the script you should see the telemetry values. Select all and then click on <b> SHOW ON WIDGET </b> > select <b> CHARTS </b> from <i> Current bundle </i> and then <b> ADD TO DASHBOARD </b> by <b> creating a new one </b>. 
-        
-        </br> </br>
-        
-        <img src="https://i.postimg.cc/bvKM68Nq/Screenshot-20200324-205300.png" alt="dashboards" width="80%">
-        
-        </br> </br>
-        
-        Do not forget to <b> make your dashboard <i>public</i> </b>!        
-    
-    </p>
-    
-    <hr>
-    
-    <p>
-    
-        <h2> Make the web app work! </h2>
-        
-        If you want to include your dashboards in your web application you can simply use this web app and change some stuffs.
-        </br>
-        First make your dashobard public and copy the public link.
-        </br>
-        In your <b> DASHBOARDS </b> panel click on the <b> pencil icon </b> of your dashboard's card and copy the public link.
-        
-        </br> </br> 
-        
-        <img src="https://i.postimg.cc/sxBM3YCY/Screenshot-20200324-210515.png" width="80%">
-        
-        </br> </br>
-        
-        Now replace my link with yours in the <i>iframe</i> tag at in the <i>web_view/web_view/templates/web_view/home.html</i> file.
-        
-        </br> </br>
-        
-        <img src="https://i.postimg.cc/857ygYct/Screenshot-20200324-212059.png" width="80%">
-        
-        </br> </br>
-        
-        Now go into the <i>web_view</i> folder and run <b><i> python manage.py runserver </i></b> to view your application in <i> localhost:8000 </i>!
-    
-    </p>
+    </br> </br>
+
+    <iframe frameborder='0' height='385' scrolling='no' src='https://www.hackster.io/panicik/iot-assignment-1-991fcc/embed' width='350'></iframe>
 
 
 {% endblock corpus %}
+
+-->
