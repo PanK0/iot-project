@@ -18,3 +18,6 @@ python Simulation.py
 ```
 - To see the data visualized on Thinsboard (https://thingsboard.io/):
     Go @ [Thingsboard DASHBOARD](https://demo.thingsboard.io/dashboard/3406b610-6aa3-11ea-8e0a-7d0ef2a682d3?publicId=623f71c0-6aa3-11ea-8e0a-7d0ef2a682d3)
+
+## Complete Tutorial
+[TUTORIAL](https://www.hackster.io/panicik/iot-assignment-1-991fcc)
