@@ -13,7 +13,83 @@ The virtual environmental station uses a unique ID (identity) to publish these r
 
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment2
 
-# How To
+## TBCLIENT.py 
+- Copy the file TBCLIENT.py in the _mosquitto.rsmb/rsmb/src/MQTTSClient/Python_ folder
 
-## TBCLLIENT.py 
-- Copy the file TBCLIENT.py in the _mosquitto.rsmb/rsmb/src/MQTTSClient/Python folder_
+The client receives data from the devices on the topics _devices/dev\_c_ and _devices/dev\_d_ and forwards the telemetry to Thingsboard.
+
+Remind to set the variables _ACCESS\_TOKEN\_C_ and _ACCESS\_TOKEN\_D_ to your Thingsboard's devices tokens.
+
+## main.c
+- Copy the file main.c in the _RIOT/examples/emcute_mqttsn_ folder
+
+The file emulates two environmental stations sending data on the choosen topics formatted in a JSON script.
+
+Note that to make the whole thing work you must connect to the topics _devices/dev\_c_ and _devices/dev\_d_.
+
+## Requirements
+In order to make the whole thing work see the requirements @ [MAIN PROJECT PAGE](https://github.com/PanK0/iot-project#requirements)
+
+## How to run the system
+1. Enable TAP :
+
+    - in _RIOT/_ folder:
+    
+    ```
+    sudo ./dist/tools/tapsetup/tapsetup -c 2
+    ```
+    
+    - to check if the taps are running:
+    
+    ```
+    ifconfig | grep tap
+    ```
+
+2. Run the Broker :
+
+    - in _mosquitto.rsmb/rsmb/src_ folder:
+    
+    ```
+    ./broker_mqtts config.conf
+    ```
+
+3. Run the MQTTSN client:
+
+    - in _mosquitto.rsmb/rsmb/src/MQTTSClient/Python_ folder:
+    
+    ```
+    python TBCLIENT.py
+    ```
+    
+4. Run the RIOT Devices:
+    
+    - in _RIOT/examples/emcute_mqttsn_ folder:
+    
+    ```
+    ifconfig tapbr0
+    ```
+    - copy the ipv6 address at the inet6 field. It should be something like _fe90::2567:49ff:fe8e:7f9a_
+    
+    - run the device: 
+    
+    ```
+    make all term
+    ```
+    
+    - Once the device is running, connect it to the broker:
+    
+    ```
+    con <ipv6_address> <port>
+    // Example : con fe90::2567:49ff:fe8e:7f9a 1885
+    ```
+    - start the transmission:
+    
+    ```
+    start "devices/dev_c" "devices/dev_d"
+    ```
+    
+5. See what's happening:
+
+    Now the device should be emulating the two environmental stations by transmitting random payloads on the two topics _devices/dev\_c_ and _devices/dev\_d_ thorugh the broker we have set at point 2.
+    The MQTTSN client receives the data in MQTTSN protocol and forwards them to Thingsboard via MQTT.
+    

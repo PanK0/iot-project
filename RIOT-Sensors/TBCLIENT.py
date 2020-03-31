@@ -229,12 +229,14 @@ def publish(topic, payload, retained=False, port=1883, host="localhost"):
 
 # Communication
 ACCESS_TOKEN_C = 'pP1k9vb6SnmR9IlZagNw'                 # Token of device C
+ACCESS_TOKEN_D = 'salveeeeneeeeeeeeeee'                 # Token of device C
 broker = "demo.thingsboard.io"                          # host name
 tb_topic = "v1/devices/me/telemetry"                    # Thingsboard topic
 tb_port = 1883                                          # data listening port
 
 internal_port = 1885
-internal_topic = "devices/dev_c"                        # env station c topic
+internal_topic_c = "devices/dev_c"                      # env station c topic
+internal_topic_d = "devices/dev_d"                      # env station c topic
 
 def on_publish(client,userdata,result):                 # create function for callback
     print("data published to thingsboard \n")
@@ -245,31 +247,53 @@ client_C = paho.Client("EnvStat_C")                     # create client object
 client_C.on_publish = on_publish                        # assign function to callback
 client_C.username_pw_set(ACCESS_TOKEN_C)                # access token from thingsboard device
 client_C.connect(broker, tb_port, keepalive=60)              # establish connection
+
+# Setting Up Client D
+client_D = paho.Client("EnvStat_D")                     # create client object
+client_D.on_publish = on_publish                        # assign function to callback
+client_D.username_pw_set(ACCESS_TOKEN_D)                # access token from thingsboard device
+client_D.connect(broker, tb_port, keepalive=60)              # establish connection
+
+# Start loooooooooop
 client_C.loop_start()
+client_D.loop_start()
 
 # RSMB STUFFS
-rsmb_c = Client("dev_c", internal_port)
+rsmb_c = Client("dev_c", port=internal_port)
+rsmb_d = Client("dev_d", port=internal_port)
 
 # Starting up our rsmb
 while (True) :
     
-    # Device C data acquiring
-    
+    # Device C data acquiring    
     rsmb_c.registerCallback(Callback())
     rsmb_c.connect()
-    rc, topic1 = rsmb_c.subscribe("hello/world")
+    rc, topic1 = rsmb_c.subscribe(internal_topic_c)
 
-    while (rsmb_c.callback.payload == None) :
+    # Device D data acquiring
+    rsmb_d.registerCallback(Callback())
+    rsmb_d.connect()
+    rd, topic2 = rsmb_d.subscribe(internal_topic_d)
+
+    while (rsmb_c.callback.payload == None or rsmb_d.callback.payload == None ) :
         pass
-    print (rsmb_c.callback.payload)
+    #print (rsmb_c.callback.payload)
     
     # Device C data transmission to ThingsBoard
     print("CCC ENVIRONMENTAL STATION C ")
     print ("\n")
-    payload_C = "{\"humidity\":\""+str(random.randint(0, 100)) +"\"}" # get payload from C
-    ret = client_C.publish(tb_topic, payload_C)
-    print(payload_C)
+    #payload_C = "{\"humidity\":\""+str(random.randint(0, 100)) +"\"}" # get payload from C
+    ret = client_C.publish(tb_topic, rsmb_c.callback.payload)
+    print(rsmb_c.callback.payload)
+    print ("\n")
+    
+    # Device D data transmission to ThingsBoard
+    print("DDD ENVIRONMENTAL STATION D ")
+    print ("\n")
+    ret = client_D.publish(tb_topic, rsmb_d.callback.payload)
+    print(rsmb_d.callback.payload)
     print ("\n")
     
     # RSMB STUFFS
     rsmb_c.disconnect()
+    rsmb_d.disconnect()
