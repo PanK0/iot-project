@@ -228,8 +228,8 @@ def publish(topic, payload, retained=False, port=1883, host="localhost"):
 """
 
 # Communication
-ACCESS_TOKEN_C = 'pP1k9vb6SnmR9IlZagNw'                 # Token of device C
-ACCESS_TOKEN_D = 'salveeeeneeeeeeeeeee'                 # Token of device C
+ACCESS_TOKEN_C = 'thP4KR1bffpe3mjgkaS5'                 # Token of device C
+ACCESS_TOKEN_D = 'y4dQQRQkieiBbH1d0WBU'                 # Token of device C
 broker = "demo.thingsboard.io"                          # host name
 tb_topic = "v1/devices/me/telemetry"                    # Thingsboard topic
 tb_port = 1883                                          # data listening port
