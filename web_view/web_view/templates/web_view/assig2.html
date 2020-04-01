@@ -1,0 +1,23 @@
+{% extends "web_view/base.html" %}
+{% block content %} 
+
+    <h1> Assignment Two </h1>
+    
+    <p>
+        Check for the assignment @ <a href="http://ichatz.me/Site/InternetOfThings2020-Assignment2"> Assignment Page</a>.
+        
+        </br>
+        
+        This is the real time graph of of the Environmental Station Simulation
+    </p>
+    
+    <button onclick="showhide('dashboard')">Dashboards</button>
+    
+{% endblock content %}
+
+
+{% block corpus %}
+
+    <iframe src="https://demo.thingsboard.io/dashboard/9a340d40-734d-11ea-b382-7d0ef2a682d3?publicId=623f71c0-6aa3-11ea-8e0a-7d0ef2a682d3" class="myIframe" id="dashboard"> </iframe>
+
+{% endblock corpus %}

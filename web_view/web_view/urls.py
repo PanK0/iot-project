@@ -8,4 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),                    # admin panel route
     path('', views.home, name='web_view_home'),         # general home page
     path('blog/', include('blog.urls'), name='blog-home'),                # blog home page
+    path('assignment-one/', views.assig1, name='assignment-one'),
+    path('assignment-two/', views.assig2, name='assignment-two'),
 ]

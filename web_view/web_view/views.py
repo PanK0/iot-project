@@ -5,3 +5,9 @@ from django.http import HttpResponse
 
 def home(request) :
     return render(request, 'web_view/home.html')
+
+def assig1(request) :
+    return render(request, 'web_view/assig1.html')
+
+def assig2(request) :
+    return render(request, 'web_view/assig2.html')

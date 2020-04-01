@@ -1,0 +1,35 @@
+{% extends "web_view/base.html" %}
+{% block content %} 
+
+    <h1> Assignment One </h1>
+    
+    <p>
+        Check for the assignment @ <a href="http://ichatz.me/Site/InternetOfThings2020-Assignment1"> Assignment Page</a>.
+        
+        </br>
+        
+        This is the real time graph of of the Environmental Station Simulation
+    </p>
+    
+    <button onclick="showhide('dashboard')">Dashboards</button>
+    <button onclick="showhide('temperature')">Temperature</button>
+    <button onclick="showhide('humidity')">Humidity</button>
+    <button onclick="showhide('wind')">Wind</button>
+    <button onclick="showhide('rain')">Rain</button>
+    
+{% endblock content %}
+
+
+{% block corpus %}
+
+    <iframe src="https://demo.thingsboard.io/dashboard/3406b610-6aa3-11ea-8e0a-7d0ef2a682d3?publicId=623f71c0-6aa3-11ea-8e0a-7d0ef2a682d3" class="myIframe" id="dashboard"> </iframe>
+
+    <iframe src="https://demo.thingsboard.io/dashboard/57eb8d00-6d44-11ea-ad02-b3576b7d39f1?publicId=623f71c0-6aa3-11ea-8e0a-7d0ef2a682d3" class="myIframe" id="temperature"> </iframe>
+   
+    <iframe src="https://demo.thingsboard.io/dashboard/1b6b4f90-6d45-11ea-ad02-b3576b7d39f1?publicId=623f71c0-6aa3-11ea-8e0a-7d0ef2a682d3" class="myIframe" id="humidity"> </iframe>
+   
+    <iframe src="https://demo.thingsboard.io/dashboard/3294b940-6d45-11ea-ad02-b3576b7d39f1?publicId=623f71c0-6aa3-11ea-8e0a-7d0ef2a682d3" class="myIframe" id="wind"> </iframe>
+    
+    <iframe src="https://demo.thingsboard.io/dashboard/4df84a30-6d45-11ea-8e0a-7d0ef2a682d3?publicId=623f71c0-6aa3-11ea-8e0a-7d0ef2a682d3" class="myIframe" id="rain"> </iframe>
+
+{% endblock corpus %}
