@@ -239,7 +239,7 @@ int get_random_payload(char* payload) {
     int humi = get_random_value(0, 100);
     int wdir = get_random_value(0, 360);
     int wint = get_random_value(0, 100);
-    int rain = get_random_value(0, 100);
+    int rain = get_random_value(0, 50);
     
     sprintf(payload, "{\"temperature\": \"%d\", \"humidity\": \"%d\", \"wind direction\": \"%d\", \"wind intensity\": \"%d\", \"rain\": \"%d\"}", temp, humi, wdir, wint, rain);
     

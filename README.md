@@ -1,13 +1,21 @@
-# Assignment for IOT
+# Web Application
+Visit the [WEB APPLICATION](http://iotwebapp.herokuapp.com)
+
+# Assignment 1
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment1
+
+Take a look at the [YOUTUBE PRESENTATION](https://youtu.be/rgGRoJ8GJn4)
+
+Don't forget the [TUTORIAL](https://www.hackster.io/panicik/iot-assignment-1-991fcc)
+
+# Assignment 2
 
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment2
 
-Take a look to the [WEB APPLICATION](http://iotwebapp.herokuapp.com)
+Take a look at the [YOUTUBE PRESENTATION](https://youtu.be/f1hhviwPckg)
 
-And also to the [YOUTUBE PRESENTATION](https://youtu.be/rgGRoJ8GJn4)
+Don't forget the [TUTORIAL](https://www.hackster.io/panicik/iot-assignment-2-dccd47)
 
-Don't forget the [TUTORIAL](https://www.hackster.io/panicik/iot-assignment-1-991fcc)
 
 ## Requirements:
 ### /virtual-sensors
