@@ -33,7 +33,7 @@ In order to make the whole thing work see the requirements @ [MAIN PROJECT PAGE]
 ## Directory Example
 Here is an example on how the directory tree can be:
 
-[![dirtree.png](https://i.postimg.cc/xTt8qKNx/dirtree.png)](https://postimg.cc/zVH8cHjK)
+[![dirtree.png](https://i.postimg.cc/zv3dYCsL/dirtree.png)](https://postimg.cc/QKGgpTxs)
 
 ## How to run the system
 1. Enable TAP :
