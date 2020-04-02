@@ -30,6 +30,10 @@ Note that to make the whole thing work you must connect to the topics _devices/d
 ## Requirements
 In order to make the whole thing work see the requirements @ [MAIN PROJECT PAGE](https://github.com/PanK0/iot-project#requirements)
 
+## Directory Example
+Here is an example on how the directory tree can be:
+[![dirtree.png](https://i.postimg.cc/xTt8qKNx/dirtree.png)](https://postimg.cc/zVH8cHjK)
+
 ## How to run the system
 1. Enable TAP :
 
@@ -92,4 +96,4 @@ In order to make the whole thing work see the requirements @ [MAIN PROJECT PAGE]
 
     Now the device should be emulating the two environmental stations by transmitting random payloads on the two topics _devices/dev\_c_ and _devices/dev\_d_ thorugh the broker we have set at point 2.
     The MQTTSN client receives the data in MQTTSN protocol and forwards them to Thingsboard via MQTT.
-    
+
