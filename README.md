@@ -16,6 +16,8 @@ Take a look at the [YOUTUBE PRESENTATION](https://youtu.be/f1hhviwPckg)
 
 Don't forget the [TUTORIAL](https://www.hackster.io/panicik/iot-assignment-2-dccd47)
 
+# Assignment 3
+Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment3
 
 ## Requirements:
 ### /virtual-sensors
@@ -28,3 +30,7 @@ Don't forget the [TUTORIAL](https://www.hackster.io/panicik/iot-assignment-2-dcc
 - pahp-mqtt @ https://pypi.org/project/paho-mqtt/
 - Mosquitto @ https://mosquitto.org/
 - emcute_mqttsn @ https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn
+
+### /LoRaWAN_Station
+- pahp-mqtt @ https://pypi.org/project/paho-mqtt/
+- Mosquitto @ https://mosquitto.org/
