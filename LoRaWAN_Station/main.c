@@ -1,17 +1,19 @@
-/* in RIOT/sys/shell/commands */
+// in RIOT/tests/pkg_semtech-loramac 
 
-#include <stdio.h>
 #include <string.h>
+#include <inttypes.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 
+#include "msg.h"
 #include "shell.h"
 #include "fmt.h"
 
 #include "net/loramac.h"
 #include "semtech_loramac.h"
 
-extern semtech_loramac_t loramac;
+semtech_loramac_t loramac;
 
 /* Functions to emulate Virtual Environmental Stations */
 int get_random_value(int lower, int upper) {
@@ -32,16 +34,14 @@ int get_random_payload(char* payload) {
 
 /* END FUNCTIONS to emulate  Virtual Environmental Stations */
 
+
 /* Application key is 16 bytes long (e.g. 32 hex chars), and thus the longest
    possible size (with application session and network session keys) */
 static char print_buf[LORAMAC_APPKEY_LEN * 2 + 1];
 
 static void _loramac_usage(void)
 {
-    puts("Usage: loramac <start|get|set|join|tx"
-#ifdef MODULE_SEMTECH_LORAMAC_RX
-         "|link_check"
-#endif
+    puts("Usage: loramac <start|get|set|join|tx|link_check"
 #ifdef MODULE_PERIPH_EEPROM
          "|save|erase"
 #endif
@@ -61,19 +61,18 @@ static void _loramac_tx_usage(void)
 static void _loramac_set_usage(void)
 {
     puts("Usage: loramac set <deveui|appeui|appkey|appskey|nwkskey|devaddr|"
-         "class|dr|adr|public|netid|tx_power|rx2_freq|rx2_dr|ul_cnt> <value>");
+         "class|dr|adr|public|netid|tx_power|rx2_freq|rx2_dr> <value>");
 }
 
 static void _loramac_get_usage(void)
 {
     puts("Usage: loramac get <deveui|appeui|appkey|appskey|nwkskey|devaddr|"
-         "class|dr|adr|public|netid|tx_power|rx2_freq|rx2_dr|ul_cnt>");
+         "class|dr|adr|public|netid|tx_power|rx2_freq|rx2_dr>");
 }
 
-int _loramac_handler(int argc, char **argv)
+static int _cmd_loramac(int argc, char **argv)
 {
-    if (strcmp(argv[1], "start") != 0 && argc < 2) {
-        printf ("CAUTION!\n");
+    if (argc < 2) {
         _loramac_usage();
         return 1;
     }
@@ -156,19 +155,16 @@ int _loramac_handler(int argc, char **argv)
                    semtech_loramac_get_public_network(&loramac) ? "on" : "off");
         }
         else if (strcmp("netid", argv[2]) == 0) {
-            printf("NetID: %"PRIu32"\n", semtech_loramac_get_netid(&loramac));
+            printf("NetID: %" PRIu32 "\n", semtech_loramac_get_netid(&loramac));
         }
         else if (strcmp("tx_power", argv[2]) == 0) {
             printf("TX power index: %d\n", semtech_loramac_get_tx_power(&loramac));
         }
         else if (strcmp("rx2_freq", argv[2]) == 0) {
-            printf("RX2 freq: %"PRIu32"\n", semtech_loramac_get_rx2_freq(&loramac));
+            printf("RX2 freq: %" PRIu32 "\n", semtech_loramac_get_rx2_freq(&loramac));
         }
         else if (strcmp("rx2_dr", argv[2]) == 0) {
             printf("RX2 dr: %d\n", semtech_loramac_get_rx2_dr(&loramac));
-        }
-        else if (strcmp("ul_cnt", argv[2]) == 0) {
-            printf("Uplink Counter: %"PRIu32"\n", semtech_loramac_get_uplink_counter(&loramac));
         }
         else {
             _loramac_get_usage();
@@ -343,14 +339,6 @@ int _loramac_handler(int argc, char **argv)
             }
             semtech_loramac_set_rx2_dr(&loramac, dr);
         }
-        else if (strcmp("ul_cnt", argv[2]) == 0) {
-            if (argc < 4) {
-                puts("Usage: loramac set ul_cnt <value>");
-                return 1;
-            }
-            uint32_t counter = atoi(argv[3]);
-            semtech_loramac_set_uplink_counter(&loramac, counter);
-        }
         else {
             _loramac_set_usage();
             return 1;
@@ -428,7 +416,7 @@ int _loramac_handler(int argc, char **argv)
 
         semtech_loramac_set_tx_mode(&loramac, cnf);
         semtech_loramac_set_tx_port(&loramac, port);
-        /* semtech_loramac_send @ RIOT/pkg/semtech-loramac/contrib/semtech_loramac.c */
+
         switch (semtech_loramac_send(&loramac,
                                      (uint8_t *)argv[2], strlen(argv[2]))) {
             case SEMTECH_LORAMAC_NOT_JOINED:
@@ -446,16 +434,44 @@ int _loramac_handler(int argc, char **argv)
             case SEMTECH_LORAMAC_TX_ERROR:
                 puts("Cannot send: error");
                 return 1;
-
-            case SEMTECH_LORAMAC_TX_CNF_FAILED:
-                puts("Fail to send: no ACK received");
-                return 1;
         }
 
-        puts("Message sent with success");
+        /* wait for receive windows */
+        switch (semtech_loramac_recv(&loramac)) {
+            case SEMTECH_LORAMAC_DATA_RECEIVED:
+                loramac.rx_data.payload[loramac.rx_data.payload_len] = 0;
+                printf("Data received: %s, port: %d\n",
+                       (char *)loramac.rx_data.payload, loramac.rx_data.port);
+                break;
+
+            case SEMTECH_LORAMAC_DUTYCYCLE_RESTRICTED:
+                puts("Cannot send: dutycycle restriction");
+                return 1;
+
+            case SEMTECH_LORAMAC_BUSY:
+                puts("Cannot send: MAC is busy");
+                return 1;
+
+            case SEMTECH_LORAMAC_TX_ERROR:
+                puts("Cannot send: error");
+                return 1;
+
+            case SEMTECH_LORAMAC_TX_DONE:
+                puts("TX complete, no data received");
+                break;
+        }
+
+        if (loramac.link_chk.available) {
+            printf("Link check information:\n"
+                   "  - Demodulation margin: %d\n"
+                   "  - Number of gateways: %d\n",
+                   loramac.link_chk.demod_margin,
+                   loramac.link_chk.nb_gateways);
+        }
+
         return 0;
     }
-       /* START LOOP DATA SENDING  */
+   /* START LOOP DATA SENDING  */
     else if (strcmp(argv[1], "start") == 0) {
         
         printf ("Starting . . .\n");
@@ -528,7 +544,6 @@ int _loramac_handler(int argc, char **argv)
         }
     }
   /* END LOOP DATA SENDING  */  
-#ifdef MODULE_SEMTECH_LORAMAC_RX
     else if (strcmp(argv[1], "link_check") == 0) {
         if (argc > 2) {
             _loramac_usage();
@@ -538,7 +553,6 @@ int _loramac_handler(int argc, char **argv)
         semtech_loramac_request_link_check(&loramac);
         puts("Link check request scheduled");
     }
-#endif
 #ifdef MODULE_PERIPH_EEPROM
     else if (strcmp(argv[1], "save") == 0) {
         if (argc > 2) {
@@ -556,12 +570,25 @@ int _loramac_handler(int argc, char **argv)
 
         semtech_loramac_erase_config();
     }
-#endif        
+#endif
     else {
-        printf ("Caution!!!\n");
         _loramac_usage();
         return 1;
     }
 
     return 0;
+}
+
+static const shell_command_t shell_commands[] = {
+    { "loramac", "control the loramac stack", _cmd_loramac },
+    { NULL, NULL, NULL }
+};
+
+int main(void)
+{
+    semtech_loramac_init(&loramac);
+
+    puts("All up, running the shell now");
+    char line_buf[SHELL_DEFAULT_BUFSIZE];
+    shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
 }
