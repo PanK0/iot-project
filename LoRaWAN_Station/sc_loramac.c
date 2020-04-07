@@ -38,7 +38,7 @@ static char print_buf[LORAMAC_APPKEY_LEN * 2 + 1];
 
 static void _loramac_usage(void)
 {
-    puts("Usage: loramac <get|set|join|tx"
+    puts("Usage: loramac <start|get|set|join|tx"
 #ifdef MODULE_SEMTECH_LORAMAC_RX
          "|link_check"
 #endif
