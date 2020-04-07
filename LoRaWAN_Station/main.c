@@ -1,10 +1,11 @@
-// in RIOT/tests/pkg_semtech-loramac 
+// PATH : RIOT/tests/pkg_semtech-loramac 
 
+#include <stdio.h>
 #include <string.h>
-#include <inttypes.h>
 #include <stdlib.h>
 #include <time.h>
-#include <stdio.h>
+#include <inttypes.h>
+#include <unistd.h>
 
 #include "msg.h"
 #include "shell.h"
