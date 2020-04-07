@@ -538,10 +538,10 @@ static int _cmd_loramac(int argc, char **argv)
             }
 
             puts("Message sent with success");
-            return 0;
             
             sleep(3);
         }
+        return 0;
     }
   /* END LOOP DATA SENDING  */  
     else if (strcmp(argv[1], "link_check") == 0) {
