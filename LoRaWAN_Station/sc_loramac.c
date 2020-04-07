@@ -72,7 +72,8 @@ static void _loramac_get_usage(void)
 
 int _loramac_handler(int argc, char **argv)
 {
-    if (argc < 2 && strcmp(argv[1], "start") != 0) {
+    if (strcmp(argv[1], "start") != 0 && argc < 2) {
+        printf ("CAUTION!\n");
         _loramac_usage();
         return 1;
     }
@@ -486,6 +487,8 @@ int _loramac_handler(int argc, char **argv)
     /* START LOOP DATA SENDING  */
     else if (strcmp(argv[1], "start") == 0) {
         
+        printf ("Starting . . .\n");
+        
         uint8_t cnf = LORAMAC_DEFAULT_TX_MODE;  /* Default: confirmable */
         uint8_t port = LORAMAC_DEFAULT_TX_PORT; /* Default: 2 */
         /* handle optional parameters */
@@ -556,6 +559,7 @@ int _loramac_handler(int argc, char **argv)
   /* END LOOP DATA SENDING  */      
         
     else {
+        printf ("Caution!!!\n");
         _loramac_usage();
         return 1;
     }
