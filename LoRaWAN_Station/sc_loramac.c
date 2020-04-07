@@ -455,36 +455,7 @@ int _loramac_handler(int argc, char **argv)
         puts("Message sent with success");
         return 0;
     }
-#ifdef MODULE_SEMTECH_LORAMAC_RX
-    else if (strcmp(argv[1], "link_check") == 0) {
-        if (argc > 2) {
-            _loramac_usage();
-            return 1;
-        }
-
-        semtech_loramac_request_link_check(&loramac);
-        puts("Link check request scheduled");
-    }
-#endif
-#ifdef MODULE_PERIPH_EEPROM
-    else if (strcmp(argv[1], "save") == 0) {
-        if (argc > 2) {
-            _loramac_usage();
-            return 1;
-        }
-
-        semtech_loramac_save_config(&loramac);
-    }
-    else if (strcmp(argv[1], "erase") == 0) {
-        if (argc > 2) {
-            _loramac_usage();
-            return 1;
-        }
-
-        semtech_loramac_erase_config();
-    }
-#endif
-    /* START LOOP DATA SENDING  */
+       /* START LOOP DATA SENDING  */
     else if (strcmp(argv[1], "start") == 0) {
         
         printf ("Starting . . .\n");
@@ -556,8 +527,36 @@ int _loramac_handler(int argc, char **argv)
             sleep(3);
         }
     }
-  /* END LOOP DATA SENDING  */      
-        
+  /* END LOOP DATA SENDING  */  
+#ifdef MODULE_SEMTECH_LORAMAC_RX
+    else if (strcmp(argv[1], "link_check") == 0) {
+        if (argc > 2) {
+            _loramac_usage();
+            return 1;
+        }
+
+        semtech_loramac_request_link_check(&loramac);
+        puts("Link check request scheduled");
+    }
+#endif
+#ifdef MODULE_PERIPH_EEPROM
+    else if (strcmp(argv[1], "save") == 0) {
+        if (argc > 2) {
+            _loramac_usage();
+            return 1;
+        }
+
+        semtech_loramac_save_config(&loramac);
+    }
+    else if (strcmp(argv[1], "erase") == 0) {
+        if (argc > 2) {
+            _loramac_usage();
+            return 1;
+        }
+
+        semtech_loramac_erase_config();
+    }
+#endif        
     else {
         printf ("Caution!!!\n");
         _loramac_usage();
