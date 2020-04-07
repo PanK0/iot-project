@@ -540,7 +540,7 @@ static int _cmd_loramac(int argc, char **argv)
 
             puts("Message sent with success");
             
-            sleep(3);
+            xtimer_sleep(3);
         }
         return 0;
     }
