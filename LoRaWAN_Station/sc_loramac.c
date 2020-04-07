@@ -1,3 +1,5 @@
+/* in RIOT/sys/shell/commands */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -483,12 +485,6 @@ int _loramac_handler(int argc, char **argv)
 #endif
     /* START LOOP DATA SENDING  */
     else if (strcmp(argv[1], "start") == 0) {
-        if (argc < 3) {
-            _loramac_tx_usage();
-            return 1;
-        }
-        
-        get_random_payload(payload);
         
         uint8_t cnf = LORAMAC_DEFAULT_TX_MODE;  /* Default: confirmable */
         uint8_t port = LORAMAC_DEFAULT_TX_PORT; /* Default: 2 */
@@ -553,6 +549,8 @@ int _loramac_handler(int argc, char **argv)
 
             puts("Message sent with success");
             return 0;
+            
+            sleep(3);
         }
     }
   /* END LOOP DATA SENDING  */      
