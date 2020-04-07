@@ -72,7 +72,7 @@ static void _loramac_get_usage(void)
 
 int _loramac_handler(int argc, char **argv)
 {
-    if (argc < 2) {
+    if (argc < 2 && strcmp(argv[1], "start") != 0) {
         _loramac_usage();
         return 1;
     }
