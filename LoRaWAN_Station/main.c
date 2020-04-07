@@ -512,7 +512,16 @@ static int _cmd_loramac(int argc, char **argv)
         // Start sending data
         while (true) {
         
+            printf ("#### BP 1 \n");
+            
+            semtech_loramac_set_tx_mode(&loramac, cnf);
+            semtech_loramac_set_tx_port(&loramac, port);
+            
+            printf ("#### BP 2 \n");
+            
             get_random_payload(payload);
+            
+            printf ("#### BP 3 \n");
             
             /* semtech_loramac_send @ RIOT/pkg/semtech-loramac/contrib/semtech_loramac.c */
             switch (semtech_loramac_send(&loramac,
@@ -541,6 +550,7 @@ static int _cmd_loramac(int argc, char **argv)
             puts("Message sent with success");
             
             xtimer_sleep(3);
+            printf ("#### BP 4 \n");
         }
         return 0;
     }
