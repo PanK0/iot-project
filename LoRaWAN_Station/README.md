@@ -47,4 +47,4 @@ Note that IOT-LAB uses the code of the 2019.01 release of [RIOT](https://github.
 ## Directory Example
 Here is an example on how the directory tree can be:
 
-[![dirtree.png](https://i.postimg.cc/zv3dYCsL/dirtree.png)](https://i.postimg.cc/K8wgtkL4/dirtree.png)
+[![dirtree.png](https://i.postimg.cc/K8wgtkL4/dirtree.png)](https://postimg.cc/rDGmkpfL)
