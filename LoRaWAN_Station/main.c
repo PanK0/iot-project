@@ -508,7 +508,7 @@ static int _cmd_loramac(int argc, char **argv)
         // For random value
         srand(time(0));
         char payload[128];
-        
+   
         // Start sending data
         while (true) {
         
@@ -582,7 +582,7 @@ static int _cmd_loramac(int argc, char **argv)
             
             puts("Message sent with success");
             
-            xtimer_sleep(3);
+            xtimer_sleep(60);
 //             printf ("#### BP 4 \n");
         }
         return 0;
