@@ -10,4 +10,5 @@ urlpatterns = [
     path('blog/', include('blog.urls'), name='blog-home'),                # blog home page
     path('assignment-one/', views.assig1, name='assignment-one'),
     path('assignment-two/', views.assig2, name='assignment-two'),
+    path('assignment-three/', views.assig3, name='assignment-three'),
 ]

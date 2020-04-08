@@ -11,3 +11,6 @@ def assig1(request) :
 
 def assig2(request) :
     return render(request, 'web_view/assig2.html')
+
+def assig3(request) :
+    return render(request, 'web_view/assig3.html')
