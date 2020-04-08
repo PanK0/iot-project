@@ -44,3 +44,7 @@ You can easily follow the dedicated [TUTORIAL ON IOT-LAB](https://www.iot-lab.in
 
 Note that IOT-LAB uses the code of the 2019.01 release of [RIOT](https://github.com/RIOT-OS/RIOT).
 
+## Directory Example
+Here is an example on how the directory tree can be:
+
+[![dirtree.png](https://i.postimg.cc/zv3dYCsL/dirtree.png)](https://i.postimg.cc/K8wgtkL4/dirtree.png)
