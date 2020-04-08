@@ -37,18 +37,18 @@ def on_subscribe(client, userdata, mid, granted_qos) :
     print ("Subscribed")
     
 def on_message(client, userdata, message) :
-    print("Received message '" + str(message.payload) + "' on topic '" + message.topic)
+    #print("Received message '" + str(message.payload) + "' on topic '" + message.topic)
     generic_payload = json.loads(message.payload)       # Capturing the message arrived on TTN Topic
-    print(generic_payload['dev_id'] )
+    #print(generic_payload['dev_id'] )
     
     if (generic_payload['dev_id'] == ttn_dev_e) :
         pippo = generic_payload['payload_fields']
         global payload_E
-        payload_E = str(pippo)
+        payload_E = pippo['string']
     elif (generic_payload['dev_id'] == ttn_dev_f) :
         pippo = generic_payload['payload_fields']
         global payload_F
-        payload_F = str(pippo)
+        payload_F = pippo['string']
     else : print("LOOOOL")
     
 
@@ -82,7 +82,7 @@ datarec.loop_start()
 # Starting up our rsmb
 while (True) :
     
-    while (payload_E == "") :
+    while (payload_E == "" && payload_F == "") :
         pass
     
     # Device E data transmission to ThingsBoard

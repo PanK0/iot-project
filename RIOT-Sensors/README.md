@@ -13,12 +13,19 @@ The virtual environmental station uses a unique ID (identity) to publish these r
 
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment2
 
+## Requirements
+- pahp-mqtt @ https://pypi.org/project/paho-mqtt/
+- Mosquitto @ https://mosquitto.org/
+- emcute_mqttsn @ https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn
+
+In order to make the whole thing work see the requirements @ [MAIN PROJECT PAGE](https://github.com/PanK0/iot-project#requirements)
+
 ## TBCLIENT.py 
 - Copy the file TBCLIENT.py in the _mosquitto.rsmb/rsmb/src/MQTTSClient/Python_ folder
 
 The client receives data from the devices on the topics _devices/dev\_c_ and _devices/dev\_d_ and forwards the telemetry to Thingsboard.
 
-Remind to set the variables _ACCESS\_TOKEN\_C_ and _ACCESS\_TOKEN\_D_ to your Thingsboard's devices tokens.
+Remember to set the variables _ACCESS\_TOKEN\_C_ and _ACCESS\_TOKEN\_D_ to your Thingsboard's devices tokens.
 
 ## main.c
 - Copy the file main.c in the _RIOT/examples/emcute_mqttsn_ folder
@@ -26,9 +33,6 @@ Remind to set the variables _ACCESS\_TOKEN\_C_ and _ACCESS\_TOKEN\_D_ to your Th
 The file emulates two environmental stations sending data on the choosen topics formatted in a JSON script.
 
 Note that to make the whole thing work you must connect to the topics _devices/dev\_c_ and _devices/dev\_d_.
-
-## Requirements
-In order to make the whole thing work see the requirements @ [MAIN PROJECT PAGE](https://github.com/PanK0/iot-project#requirements)
 
 ## Directory Example
 Here is an example on how the directory tree can be:
