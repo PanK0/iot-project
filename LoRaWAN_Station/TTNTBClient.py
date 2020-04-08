@@ -82,7 +82,7 @@ datarec.loop_start()
 # Starting up our rsmb
 while (True) :
     
-    while (payload_E == "" && payload_F == "") :
+    while (payload_E == "" and payload_F == "") :
         pass
     
     # Device E data transmission to ThingsBoard
