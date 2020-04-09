@@ -21,6 +21,18 @@ Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment3
 
 In order to make the whole thing work see the requirements @ [MAIN PROJECT PAGE](https://github.com/PanK0/iot-project#requirements)
 
+It's also important to go on your TTN *console* > *application* > *Payload Formats* and add the following javascript code to the _decoder_ section:
+
+```
+function Decoder(bytes, port) {
+  var result = "";
+  for (var byte in bytes) {
+    result += String.fromCharCode(bytes[byte]);
+  }
+  return {"string": result};
+}
+```
+
 ## TTNTBClient.py 
 The client receives data from the devices on the TheThingsNetwork and forwards the telemetry to Thingsboard.
 
