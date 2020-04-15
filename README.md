@@ -19,7 +19,11 @@ Don't forget the [TUTORIAL](https://www.hackster.io/panicik/iot-assignment-2-dcc
 # Assignment 3
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment3
 
+Take a look at the [YOUTUBE PRESENTATION](https://youtu.be/O4qkoSa1qVQ)
+
 Don't forget the [TUTORIAL](https://www.hackster.io/panicik/iot-assignment-3-0191b5)
+
+
 
 ## Requirements:
 ### /virtual-sensors
