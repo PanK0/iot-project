@@ -1,4 +1,4 @@
-// PATH : RIOT/tests/pkg_semtech-loramac 
+// PATH : RIOT/tests/pkg_semtech-loramac
 
 #include <stdio.h>
 #include <string.h>
@@ -16,7 +16,9 @@
 
 semtech_loramac_t loramac;
 
-/* Functions to emulate Virtual Environmental Stations */
+/* Functions to emulate Virtual Environmental Stations
+*  Generating random values for the sensors simulation
+* */
 int get_random_value(int lower, int upper) {
     return ( rand() % (upper + 1 - lower) + lower);
 }
@@ -27,12 +29,11 @@ int get_random_payload(char* payload) {
     int wdir = get_random_value(0, 360);
     int wint = get_random_value(0, 100);
     int rain = get_random_value(0, 50);
-    
+
     sprintf(payload, "{\"temperature\": \"%d\", \"humidity\": \"%d\", \"wind direction\": \"%d\", \"wind intensity\": \"%d\", \"rain\": \"%d\"}", temp, humi, wdir, wint, rain);
-    
+
     return 0;
 }
-
 /* END FUNCTIONS to emulate  Virtual Environmental Stations */
 
 
@@ -71,6 +72,7 @@ static void _loramac_get_usage(void)
          "class|dr|adr|public|netid|tx_power|rx2_freq|rx2_dr>");
 }
 
+// Loop for sending data added at the else-if when argv[1] is equals to 'start', about line 477 
 static int _cmd_loramac(int argc, char **argv)
 {
     if (argc < 2) {
@@ -472,11 +474,13 @@ static int _cmd_loramac(int argc, char **argv)
 
         return 0;
     }
-   /* START LOOP DATA SENDING  */
+   /* START LOOP DATA SENDING
+   *  Here we start sending random generated data after the command 'start'
+   */
     else if (strcmp(argv[1], "start") == 0) {
-        
+
         printf ("Starting . . .\n");
-        
+
         uint8_t cnf = LORAMAC_DEFAULT_TX_MODE;  /* Default: confirmable */
         uint8_t port = LORAMAC_DEFAULT_TX_PORT; /* Default: 2 */
         /* handle optional parameters */
@@ -501,22 +505,22 @@ static int _cmd_loramac(int argc, char **argv)
                 }
             }
         }
-        
+
         semtech_loramac_set_tx_mode(&loramac, cnf);
         semtech_loramac_set_tx_port(&loramac, port);
 
         // For random value
         srand(time(0));
         char payload[128];
-   
+
         // Start sending data
         while (true) {
-            
+
             semtech_loramac_set_tx_mode(&loramac, cnf);
             semtech_loramac_set_tx_port(&loramac, port);
-            
+
             get_random_payload(payload);
-            
+
             /* semtech_loramac_send @ RIOT/pkg/semtech-loramac/contrib/semtech_loramac.c */
             switch (semtech_loramac_send(&loramac,
                                         (uint8_t *)payload, strlen(payload))) {
@@ -573,15 +577,15 @@ static int _cmd_loramac(int argc, char **argv)
                     loramac.link_chk.demod_margin,
                     loramac.link_chk.nb_gateways);
             }
-            
+
             puts("Message sent with success");
 
-            // Maintain this value high in order to avoid duty cycle restrictions 
+            // Maintain this value high in order to avoid duty cycle restrictions
             xtimer_sleep(180);
         }
         return 0;
     }
-  /* END LOOP DATA SENDING  */  
+  /* END LOOP DATA SENDING  */
     else if (strcmp(argv[1], "link_check") == 0) {
         if (argc > 2) {
             _loramac_usage();

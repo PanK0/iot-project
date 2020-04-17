@@ -17,7 +17,7 @@ tb_port = 1883                                          # data listening port
 ttn_host = 'eu.thethings.network'                                       # Host for TheThingsNetwork
 ttn_port = 1883                                                         # TTN service Port
 ttn_topic = '+/devices/+/up'                                            # TTN topic
-ttn_user = 'iotappan'                                                   # TTN Application's name 
+ttn_user = 'iotappan'                                                   # TTN Application's name
 ttn_key = 'ttn-account-v2.myG4JDRyLI_p3ylliDwH72pX7bkdRBRL8-fmWpJ0jio'  # TTN Application's Access Key
 ttn_dev_e = 'iotappan-dev-e'                                            # device E name
 ttn_dev_f = 'iotappan-dev-f'                                            # device F name
@@ -32,15 +32,15 @@ def on_publish(client,userdata,result):                 # create function for ca
 
 def on_connect(client, userdata, flags, rc) :           # connect callback for datarec in TTN
     print ("Connected with result coder " + str(rc))
-    
+
 def on_subscribe(client, userdata, mid, granted_qos) :
     print ("Subscribed")
-    
+
 def on_message(client, userdata, message) :
     #print("Received message '" + str(message.payload) + "' on topic '" + message.topic)
     generic_payload = json.loads(message.payload)       # Capturing the message arrived on TTN Topic
     #print(generic_payload['dev_id'] )
-    
+
     if (generic_payload['dev_id'] == ttn_dev_e) :
         pippo = generic_payload['payload_fields']
         global payload_E
@@ -50,7 +50,7 @@ def on_message(client, userdata, message) :
         global payload_F
         payload_F = pippo['string']
     else : print("LOOOOL")
-    
+
 
 # Setting Up Client E
 client_E = paho.Client("EnvStat_E")                     # create client object
@@ -69,7 +69,7 @@ client_F.connect(broker, tb_port, keepalive=60)         # establish connection
 datarec = paho.Client("DataRec")                        # create client for data receiver from TTN
 datarec.on_message = on_message                         # define what to do when a message is received
 datarec.username_pw_set(ttn_user, password=ttn_key)     # access with the right credentials
-datarec.on_subscribe = on_subscribe
+datarec.on_subscribe = on_subscribe                     # event handler
 datarec.connect(ttn_host, ttn_port, keepalive=60)       # establish connection
 datarec.subscribe(ttn_topic, qos=1)
 
@@ -81,24 +81,25 @@ datarec.loop_start()
 
 # Starting up our rsmb
 while (True) :
-    
+
     while (payload_E == "" and payload_F == "") :
         pass
-    
+
     # Device E data transmission to ThingsBoard
     print("EEE ENVIRONMENTAL STATION E ")
     ret = client_E.publish(tb_topic, payload_E)
     print ("Payload : " + payload_E)
-    
+
     print ("\n")
     print ("\n")
-    
+
     # Device F data transmission to ThingsBoard
     print("F ENVIRONMENTAL STATION F ")
     ret = client_F.publish(tb_topic, payload_F)
     print ("Payload : " + payload_F)
     print ("\n")
     print ("\n")
-    
+
+    # Reset payload variables
     payload_E = ""
     payload_F = ""
