@@ -1,27 +1,55 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-  <title>Accelerometer Example | Generic Sensor API | mobiForge</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Ruadhan O'Donoghue">
-  <meta charset="UTF-8">
+    <title>Sensor info</title>
+
+    <base href="/">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <meta name="description" content="Sensor info">
+    <meta name="theme-color" content="#0071c5">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" sizes="144x144" href="images/app-icon-144.png">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Sensor info">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sensor info">
+
+    <!-- Tile icon for Windows -->
+    <meta name="msapplication-TileImage" content="images/app-icon-144.png">
+    <meta name="msapplication-TileColor" content="#0071c5">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="node_modules/web-animations-js/web-animations-next-lite.min.js"></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        const basePath = location.href.substr(0, location.href.lastIndexOf("/") + 1);
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js', {
+            scope: basePath
+          });
+        });
+      }
+    </script>
+
+    <script type="module" src="src/sensors-app.js"></script>
+
 </head>
-<body>
-  <h1>Accelerometer raw data</h1>
-  <p><a href="https://mobiforge.com/design-development/the-generic-sensor-api">The Generic Sensor API</a> on <a href="https://mobiforge.com">mobiForge.com</a></p>
-  <div id="status">No data</div>
 
-  <script>
-    let status = document.getElementById('status');
-    if ( 'Accelerometer' in window ) {
-      let sensor = new Accelerometer();
-      sensor.addEventListener('reading', function(e) {
-        status.innerHTML = 'x: ' + e.target.x + '<br> y: ' + e.target.y + '<br> z: ' + e.target.z;
-      });
-      sensor.start();
-    }
-    else status.innerHTML = 'Accelerometer not supported';
-  </script>
-
+<body unresolved>
+    <sensors-app></sensors-app>
+    <noscript>
+      Please enable JavaScript to view this web app.
+    </noscript>
 </body>
+
 </html>
