@@ -44,32 +44,9 @@ class SensorsApp extends LitElement {
     }
 
     switch (this.selectedSensor.value) {
-    case "Ambient light":
-      sensorConstructor = window.AmbientLightSensor;
-      break;
 
     case "Accelerometer":
       sensorConstructor = window.Accelerometer;
-      break;
-
-    case "LinearAcceleration":
-      sensorConstructor = window.LinearAccelerationSensor;
-      break;
-
-    case "Gyroscope":
-      sensorConstructor = window.Gyroscope;
-      break;
-
-    case "Magnetometer":
-      sensorConstructor = window.Magnetometer;
-      break;
-
-    case "AbsoluteOrientation":
-      sensorConstructor = window.AbsoluteOrientationSensor;
-      break;
-
-    case "RelativeOrientation":
-      sensorConstructor = window.RelativeOrientationSensor;
       break;
     }
 
@@ -256,13 +233,7 @@ class SensorsApp extends LitElement {
         <h2>Add sensor</h2>
         <paper-dropdown-menu-light id="selectedSensor" label="Sensor type">
           <paper-listbox class="dropdown-content" slot="dropdown-content">
-            <paper-item>Ambient light</paper-item>
             <paper-item>Accelerometer</paper-item>
-            <paper-item>LinearAcceleration</paper-item>
-            <paper-item>Gyroscope</paper-item>
-            <paper-item>Magnetometer</paper-item>
-            <paper-item>AbsoluteOrientation</paper-item>
-            <paper-item>RelativeOrientation</paper-item>
           </paper-listbox>
         </paper-dropdown-menu-light>
         <paper-input id="selectedFrequency" label="Frequency"></paper-input>
