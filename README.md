@@ -1,7 +1,7 @@
 # Web Application
 Visit the [WEB APPLICATION](http://iotwebapp.herokuapp.com)
 
-# [Assignment 1](https://github.com/PanK0/iot-project/tree/master/virtual-sensors) [[Readme](https://pank0.github.io/iot-project/virtual-sensors/]
+# [Assignment 1](https://github.com/PanK0/iot-project/tree/master/virtual-sensors) [[Readme](https://pank0.github.io/iot-project/virtual-sensors)]
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment1
 
 Take a look at the [YOUTUBE PRESENTATION](https://youtu.be/rgGRoJ8GJn4)
