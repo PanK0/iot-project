@@ -1,18 +1,25 @@
 let xval = document.getElementById('x_value');
 let yval = document.getElementById('y_value');
 let zval = document.getElementById('z_value');
+let derr = document.getElementById('div-error');
 
 $(document).ready(() => {
   try {
     if (window.Accelerometer) {
-      document.getElementById("div-error").innerHTML = 'This stuff seems to work';
+      this.getAccelerometerValues();
     } else {
-      console.log({ error: "Generic API Accelerometer not available" });
-      document.getElementById("div-error").innerHTML = 'NOT WORKING';
+      derr.innerHTML = 'Accelerometer not available';
     }
   } catch (error) {
-    console.log({ error: error });
-    document.getElementById("div-error").innerHTML = 'Errrrrrr';
-
+    derr.innerHTML = error;
   }
 });
+
+function getAccelerometerValues() {
+  let acc = new Accelerometer({ frequency : 10 });
+    sensor.onreading = () => {
+      xval.innerHTML = acc.x;
+      yval.innerHTML = acc.y;
+      zval.innerHTML = acc.z;
+    }
+}
