@@ -18,9 +18,9 @@ $(document).ready(() => {
 function getAccelerometerValues() {
   let acc = new Accelerometer({ frequency : 10 });
   acc.onreading = () => {
-    xval.innerHTML = acc.x;
-    yval.innerHTML = acc.y;
-    zval.innerHTML = acc.z;
+    xval.innerHTML = acc.x.toFixed(3);
+    yval.innerHTML = acc.y.toFixed(3);
+    zval.innerHTML = acc.z.toFixed(3);
   }
   acc.start();
 }
