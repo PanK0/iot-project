@@ -49,6 +49,7 @@
 </nav>
 
 <div class="container" id="div-general">
+  <div class="row" id="div-error"> </div>
   <div class="container" id="div-values">
         <h1>Accelerometer</h1>
 
@@ -73,22 +74,7 @@
   </div>
 </div>
 
-<div class="container" id="status">
-</div>
-
-<script>
-   let status = document.getElementById('status');
-   if ( 'Accelerometer' in window ) {
-     let sensor = new Accelerometer();
-     sensor.addEventListener('reading', function(e) {
-       status.innerHTML = 'x: ' + e.target.x + '<br> y: ' + e.target.y + '<br> z: ' + e.target.z;
-     });
-     sensor.start();
-   }
-   else status.innerHTML = 'Accelerometer not supported';
- </script>
-
-
-
 </body>
+
+<script type = "text/javascript" src="sensor.js"></script>
 </html>
