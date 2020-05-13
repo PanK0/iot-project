@@ -22,4 +22,5 @@ function getAccelerometerValues() {
     yval.innerHTML = acc.y;
     zval.innerHTML = acc.z;
   }
+  acc.start();
 }
