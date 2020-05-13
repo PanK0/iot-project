@@ -71,8 +71,23 @@
           </tr>
         </table>
   </div>
-
 </div>
+
+<div class="container" id="status">
+</div>
+
+<script>
+   let status = document.getElementById('status');
+   if ( 'Accelerometer' in window ) {
+     let sensor = new Accelerometer();
+     sensor.addEventListener('reading', function(e) {
+       status.innerHTML = 'x: ' + e.target.x + '<br> y: ' + e.target.y + '<br> z: ' + e.target.z;
+     });
+     sensor.start();
+   }
+   else status.innerHTML = 'Accelerometer not supported';
+ </script>
+
 
 
 </body>
