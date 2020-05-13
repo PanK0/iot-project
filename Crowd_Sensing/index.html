@@ -31,17 +31,36 @@
           color: #ffffff;
           background-color: #243342;
           overflow: hidden;
-          width: 300px;
+          width: 500px;
         ">
   <div class="container"
         style="
         margin-top: 5px;
-        margin-bottom: 20px;">
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;">
 
-    <h1>Accelerometer</h1>
-    <p>Things here</p>
-    <p>Other things here.</p>
+        <h1>Accelerometer</h1>
 
+        <table
+          style="width:100%;">
+          <tr>
+            <th> Axis </th>
+            <th> Value (m/s^2) </th>
+          </tr>
+          <tr>
+            <td> X </td>
+            <td id ="x_value"> 0 </td>
+          </tr>
+          <tr>
+            <td> Y </td>
+            <td id ="y_value"> 0 </td>
+          </tr>
+          <tr>
+            <td> Z </td>
+            <td id ="z_value"> 0 </td>
+          </tr>
+        </table>
   </div>
 
 </div>
