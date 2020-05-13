@@ -1,55 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Sensor info</title>
-
-    <base href="/">
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <meta name="description" content="Sensor info">
-    <meta name="theme-color" content="#0071c5">
-
-    <link rel="manifest" href="manifest.json">
-    <link rel="shortcut icon" sizes="144x144" href="images/app-icon-144.png">
-
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Sensor info">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Sensor info">
-
-    <!-- Tile icon for Windows -->
-    <meta name="msapplication-TileImage" content="images/app-icon-144.png">
-    <meta name="msapplication-TileColor" content="#0071c5">
-    <meta name="msapplication-tap-highlight" content="no">
-
-    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-    <script src="node_modules/web-animations-js/web-animations-next-lite.min.js"></script>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        const basePath = location.href.substr(0, location.href.lastIndexOf("/") + 1);
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('service-worker.js', {
-            scope: basePath
-          });
-        });
-      }
-    </script>
-
-    <script type="module" src="src/sensors-app.js"></script>
-
+  <title>Crowd Sensing App for IOT Course</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body unresolved>
-    <sensors-app></sensors-app>
-    <noscript>
-      Please enable JavaScript to view this web app.
-    </noscript>
-</body>
+<body style="background-color: #ffff00;">
 
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid"
+        style="background-color: #243342">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="color: #ffffff;">Crowd Sensing App</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="http://iotwebapp.herokuapp.com/" target="_blank">WebApp</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container"
+      style="
+          border-radius: 15px 50px 30px;
+          color: #ffffff;
+          background-color: #243342;
+          overflow: hidden;
+          width: 300px;
+          margin-top: 100px;
+        ">
+  <div class="container"
+        style="
+        margin-top: 5px;
+        margin-bottom: 20px;">
+
+    <h1>Accelerometer</h1>
+    <p>Things here</p>
+    <p>Other things here.</p>
+
+  </div>
+  
+</div>
+
+
+</body>
 </html>

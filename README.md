@@ -31,7 +31,7 @@ Code and README in the [LoRaWAN_Station](https://github.com/PanK0/iot-project/tr
 
 
 
-# [Assignment 4](https://github.com/PanK0/iot-project/tree/master/Crowd_Sensing) [[Try me!](https://pank0.github.io/iot-project/Crowd_Sensing/build/bundled/)]
+# [Assignment 4](https://github.com/PanK0/iot-project/tree/master/Crowd_Sensing) [[Try me!](https://pank0.github.io/iot-project/Crowd_Sensing/)]
 
 ## Requirements:
 ### /virtual-sensors
