@@ -1,13 +1,29 @@
+// Getting values from document
 let xval = document.getElementById('x_value');
 let yval = document.getElementById('y_value');
 let zval = document.getElementById('z_value');
 let derr = document.getElementById('div-error');
+
+// Thingsboard stuffs
+const ACCESS_TOKEN_G = 'VzGjauPoPkwpUhcbdmJw';
+const TOPIC = 'https://demo.thingsboard.io/api/v1/' + ACCESS_TOKEN_G +'/telemetry';
+const PORT = 1883;
+const http = new XMLHttpRequest();
+http.open("POST", TOPIC);
+
+let vals = {
+  'x' : xval.innerHTML,
+  'y' : yval.innerHTML,
+  'z' : zval.innerHTML
+};
+let telemetry = JSON.stringify(vals);
 
 // Load the code when the page is ready
 $(document).ready(() => {
   try {
     if (window.Accelerometer) {
       this.getAccelerometerValues();
+      this.sendValues();
     } else {
       derr.innerHTML = 'Accelerometer not available';
     }
@@ -26,4 +42,12 @@ function getAccelerometerValues() {
     zval.innerHTML = acc.z.toFixed(3);
   }
   acc.start();
+}
+
+function sendValues() {
+  vals.x = xval.innerHTML;
+  vals.y = yval.innerHTML;
+  vals.z = zval.innerHTML;
+  telemetry = JSON.stringify(vals);
+  http.send(telemetry);
 }
