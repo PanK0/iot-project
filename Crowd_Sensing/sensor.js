@@ -39,8 +39,8 @@ function getAccelerometerValues() {
     yval.innerHTML = acc.y.toFixed(3);
     zval.innerHTML = acc.z.toFixed(3);
 
+    // Data must be sent on reading!
     this.sendValues();
-    derr.innerHTML = "sent! " + xval.innerHTML;
   }
   acc.start();
 }
