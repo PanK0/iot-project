@@ -22,8 +22,6 @@ $(document).ready(() => {
   try {
     if (window.Accelerometer) {
       this.getAccelerometerValues();
-      this.sendValues();
-      derr.innerHTML = "sent! " + xval.innerHTML;
     } else {
       derr.innerHTML = 'Accelerometer not available';
     }
@@ -40,10 +38,14 @@ function getAccelerometerValues() {
     xval.innerHTML = acc.x.toFixed(3);
     yval.innerHTML = acc.y.toFixed(3);
     zval.innerHTML = acc.z.toFixed(3);
+
+    this.sendValues();
+    derr.innerHTML = "sent! " + xval.innerHTML;
   }
   acc.start();
 }
 
+// Send values to thingsboard
 function sendValues() {
   http = new XMLHttpRequest();
   http.open("POST", TOPIC);
