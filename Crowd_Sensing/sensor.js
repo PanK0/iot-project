@@ -8,8 +8,7 @@ let derr = document.getElementById('div-error');
 const ACCESS_TOKEN_G = 'VzGjauPoPkwpUhcbdmJw';
 const TOPIC = 'https://demo.thingsboard.io/api/v1/' + ACCESS_TOKEN_G +'/telemetry';
 const PORT = 1883;
-const http = new XMLHttpRequest();
-http.open("POST", TOPIC);
+let http = new XMLHttpRequest();
 
 let vals = {
   'x' : xval.innerHTML,
@@ -24,6 +23,7 @@ $(document).ready(() => {
     if (window.Accelerometer) {
       this.getAccelerometerValues();
       this.sendValues();
+      derr.innerHTML = "sent! " + xval.innerHTML;
     } else {
       derr.innerHTML = 'Accelerometer not available';
     }
@@ -45,6 +45,8 @@ function getAccelerometerValues() {
 }
 
 function sendValues() {
+  http = new XMLHttpRequest();
+  http.open("POST", TOPIC);
   vals.x = xval.innerHTML;
   vals.y = yval.innerHTML;
   vals.z = zval.innerHTML;
