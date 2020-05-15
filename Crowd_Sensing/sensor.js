@@ -3,6 +3,7 @@ let yval = document.getElementById('y_value');
 let zval = document.getElementById('z_value');
 let derr = document.getElementById('div-error');
 
+// Load the code when the page is ready
 $(document).ready(() => {
   try {
     if (window.Accelerometer) {
@@ -15,6 +16,8 @@ $(document).ready(() => {
   }
 });
 
+// Gets data from the accelerometer with an update frequency of 1 Hz and
+// puts the data into the corresponding field of the html page.
 function getAccelerometerValues() {
   let acc = new Accelerometer({ frequency : 1 });
   acc.onreading = () => {

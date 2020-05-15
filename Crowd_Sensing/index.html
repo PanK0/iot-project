@@ -29,7 +29,8 @@
     margin-top: 5px;
     margin-bottom: 20px;
     margin-left: 10px;
-    margin-right: 20px;"
+    margin-right: 10px;
+    width: 90%;
   }
 
   #div-error {
@@ -61,24 +62,28 @@
   <div class="container" id="div-values">
         <h1>Accelerometer</h1>
 
-        <table>
+      <table class="table">
+        <thead>
           <tr>
-            <th> Axis </th>
-            <th> Value (m/s^2) </th>
+            <th scope="col">Axis</th>
+            <th scope="col">Value (m/s^2)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">X</th>
+            <td id='x_value'>0</td>
           </tr>
           <tr>
-            <td> X </td>
-            <td id ="x_value"> 0 </td>
+            <th scope="row">Y</th>
+            <td id='y_value'>0</td>
           </tr>
           <tr>
-            <td> Y </td>
-            <td id ="y_value"> 0 </td>
+            <th scope="row">Z</th>
+            <td id='z_value'>0</td>
           </tr>
-          <tr>
-            <td> Z </td>
-            <td id ="z_value"> 0 </td>
-          </tr>
-        </table>
+        </tbody>
+      </table>
   </div>
 </div>
 
