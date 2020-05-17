@@ -4,6 +4,8 @@ let yval = document.getElementById('y_value');
 let zval = document.getElementById('z_value');
 let derr = document.getElementById('div-error');
 
+let acc = new Accelerometer({ frequency : 1 });
+
 // Thingsboard stuffs
 const ACCESS_TOKEN_G = 'VzGjauPoPkwpUhcbdmJw';
 const TOPIC = 'https://demo.thingsboard.io/api/v1/' + ACCESS_TOKEN_G +'/telemetry';
@@ -33,7 +35,6 @@ $(document).ready(() => {
 // Gets data from the accelerometer with an update frequency of 1 Hz and
 // puts the data into the corresponding field of the html page.
 function getAccelerometerValues() {
-  let acc = new Accelerometer({ frequency : 1 });
   acc.onreading = () => {
     xval.innerHTML = acc.x.toFixed(3);
     yval.innerHTML = acc.y.toFixed(3);
