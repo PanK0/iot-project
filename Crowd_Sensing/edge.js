@@ -6,6 +6,7 @@ let derr = document.getElementById('div-error');
 let dact = document.getElementById('div-activity');
 
 let acc = new Accelerometer({ frequency : 1 });
+let moving = 0;
 
 // Thingsboard stuffs
 const ACCESS_TOKEN_G = '6WTHnnVbJdlrX8QcOSWj';
@@ -18,7 +19,11 @@ let vals = {
   'y' : yval.innerHTML,
   'z' : zval.innerHTML
 };
-let telemetry = JSON.stringify(vals);
+
+let activity = {
+  'Moving' = 0;
+}
+let telemetry = JSON.stringify(activity);
 
 // Load the code when the page is ready
 $(document).ready(() => {
@@ -50,15 +55,19 @@ function getAccelerometerValues() {
 // Send values to thingsboard
 function sendValues() {
   let mag = getTotalAcceleration();
-  if (Math.abs(mag - 9.81) > 0.2) {
+  let pippo = Math.abs(mag - 9.81);
+  if (pippo > 0.2) {
     http = new XMLHttpRequest();
     http.open("POST", TOPIC);
-    telemetry = JSON.stringify(vals);
+    activity.moving = 1;
+    telemetry = JSON.stringify(activity);
     http.send(telemetry);
-
     dact.style.background = 'green';
     dact.innerHTML = "<b> Moving </b>" + mag.toFixed(3);
   } else {
+    activity.moving = 0;
+    telemetry = JSON.stringify(activity);
+    http.send(telemetry);
     dact.style.background = 'blue';
     dact.innerHTML = "<b> Stopped </b>" + mag.toFixed(3);
   }
