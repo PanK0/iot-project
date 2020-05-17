@@ -6,7 +6,6 @@ let derr = document.getElementById('div-error');
 let dact = document.getElementById('div-activity');
 
 let acc = new Accelerometer({ frequency : 1 });
-let moving = 0;
 
 // Thingsboard stuffs
 const ACCESS_TOKEN_G = '6WTHnnVbJdlrX8QcOSWj';
@@ -21,7 +20,7 @@ let vals = {
 };
 
 let activity = {
-  'Moving' = 0;
+  'moving' = 0;
 }
 let telemetry = JSON.stringify(activity);
 
@@ -63,13 +62,13 @@ function sendValues() {
     telemetry = JSON.stringify(activity);
     http.send(telemetry);
     dact.style.background = 'green';
-    dact.innerHTML = "<b> Moving </b>" + mag.toFixed(3);
+    dact.innerHTML = "<b> Moving </b>" + pippo.toFixed(3);
   } else {
     activity.moving = 0;
     telemetry = JSON.stringify(activity);
     http.send(telemetry);
     dact.style.background = 'blue';
-    dact.innerHTML = "<b> Stopped </b>" + mag.toFixed(3);
+    dact.innerHTML = "<b> Stopped </b>" + pippo.toFixed(3);
   }
 }
 
