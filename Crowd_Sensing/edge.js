@@ -37,9 +37,9 @@ $(document).ready(() => {
 // puts the data into the corresponding field of the html page.
 function getAccelerometerValues() {
   acc.onreading = () => {
-    xval.innerHTML = acc.x.toFixed(3) * 9.81;
-    yval.innerHTML = acc.y.toFixed(3) * 9.81;
-    zval.innerHTML = acc.z.toFixed(3) * 9.81;
+    xval.innerHTML = acc.x.toFixed(3) / 9.81;
+    yval.innerHTML = acc.y.toFixed(3) / 9.81;
+    zval.innerHTML = acc.z.toFixed(3) / 9.81;
 
     // Data must be sent on reading!
     this.sendValues();
@@ -65,8 +65,8 @@ function sendValues() {
 }
 
 function getTotalAcceleration() {
-  vals.x = acc.x.toFixed(3) * 9.81;
-  vals.y = acc.y.toFixed(3) * 9.81;
-  vals.z = acc.z.toFixed(3) * 9.81;
+  vals.x = acc.x.toFixed(3) / 9.81;
+  vals.y = acc.y.toFixed(3) / 9.81;
+  vals.z = acc.z.toFixed(3) / 9.81;
   return Math.sqrt( (vals.x * vals.x) + (vals.y * vals.y) + (vals.z * vals.z) );
 }
