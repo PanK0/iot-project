@@ -50,8 +50,7 @@ function getAccelerometerValues() {
 // Send values to thingsboard
 function sendValues() {
   let mag = getTotalAcceleration();
-  mag = mag - 9.81;
-  if (mag > 0.6) {
+  if (mag > 9.81 + 0.6) {
     http = new XMLHttpRequest();
     http.open("POST", TOPIC);
     telemetry = JSON.stringify(vals);
