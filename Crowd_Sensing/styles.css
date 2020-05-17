@@ -12,6 +12,10 @@ table {
   height: 270px;
 }
 
+#div-dash {
+    width: 100%;
+}
+
 #div-values {
   margin-top: 5px;
   margin-bottom: 20px;
