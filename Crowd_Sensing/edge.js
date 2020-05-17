@@ -19,10 +19,7 @@ let vals = {
   'z' : zval.innerHTML
 };
 
-let activity = {
-  'moving' = 0
-};
-let telemetry = JSON.stringify(activity);
+let telemetry = JSON.stringify(vals);
 
 // Load the code when the page is ready
 $(document).ready(() => {
