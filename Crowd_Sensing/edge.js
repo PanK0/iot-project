@@ -58,14 +58,12 @@ function sendValues() {
   if (pippo > 0.2) {
     http = new XMLHttpRequest();
     http.open("POST", TOPIC);
-    activity.moving = 1;
-    telemetry = JSON.stringify(activity);
+    telemetry = JSON.stringify(vals);
     http.send(telemetry);
     dact.style.background = 'green';
     dact.innerHTML = "<b> Moving </b>" + pippo.toFixed(3);
   } else {
-    activity.moving = 0;
-    telemetry = JSON.stringify(activity);
+    telemetry = JSON.stringify(vals);
     http.send(telemetry);
     dact.style.background = 'blue';
     dact.innerHTML = "<b> Stopped </b>" + pippo.toFixed(3);
