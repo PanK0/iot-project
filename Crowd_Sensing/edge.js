@@ -52,7 +52,7 @@ function getAccelerometerValues() {
 function sendValues() {
   let mag = getTotalAcceleration();
   let pippo = Math.abs(mag - 9.81);
-  if (pippo > 0.6) {
+  if (pippo > 0.17) {
     http = new XMLHttpRequest();
     http.open("POST", TOPIC);
     telemetry = JSON.stringify(vals);
