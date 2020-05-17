@@ -13,9 +13,9 @@ const PORT = 1883;
 let http = new XMLHttpRequest();
 
 let vals = {
-  'x' : xval.innerHTML,
-  'y' : yval.innerHTML,
-  'z' : zval.innerHTML
+  'x' : acc.x.toFixed(3),
+  'y' : acc.y.toFixed(3),
+  'z' : acc.z.toFixed(3)
 };
 let telemetry = JSON.stringify(vals);
 
@@ -50,9 +50,9 @@ function getAccelerometerValues() {
 function sendValues() {
   http = new XMLHttpRequest();
   http.open("POST", TOPIC);
-  vals.x = xval.innerHTML;
-  vals.y = yval.innerHTML;
-  vals.z = zval.innerHTML;
+  vals.x = acc.x.toFixed(3);
+  vals.y = acc.y.toFixed(3);
+  vals.z = acc.z.toFixed(3);
   telemetry = JSON.stringify(vals);
   http.send(telemetry);
 }
