@@ -49,17 +49,18 @@ function getAccelerometerValues() {
 
 // Send values to thingsboard
 function sendValues() {
-  http = new XMLHttpRequest();
-  http.open("POST", TOPIC);
   let mag = getTotalAcceleration();
   if (mag > 0.6) {
+    http = new XMLHttpRequest();
+    http.open("POST", TOPIC);
     telemetry = JSON.stringify(vals);
     http.send(telemetry);
+
     dact.style.background = 'green';
-    dact.innerHTML = "<b> Moving </b>";
+    dact.innerHTML = "<b> Moving </b>" + mag;
   } else {
     dact.style.background = 'blue';
-    dact.innerHTML = "<b> Stopped </b>";
+    dact.innerHTML = "<b> Stopped </b>" + mag;
   }
 }
 
