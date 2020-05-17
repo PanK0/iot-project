@@ -20,7 +20,7 @@ let vals = {
 };
 
 let activity = {
-  'moving' = 0;
+  'moving' = 0
 }
 let telemetry = JSON.stringify(activity);
 
