@@ -3,6 +3,7 @@ let xval = document.getElementById('x_value');
 let yval = document.getElementById('y_value');
 let zval = document.getElementById('z_value');
 let derr = document.getElementById('div-error');
+let dact = document.getElementById('div-activity');
 
 let acc = new Accelerometer({ frequency : 1 });
 
@@ -50,16 +51,21 @@ function getAccelerometerValues() {
 function sendValues() {
   http = new XMLHttpRequest();
   http.open("POST", TOPIC);
-  vals.x = xval.innerHTML;
-  vals.y = yval.innerHTML;
-  vals.z = zval.innerHTML;
-  telemetry = JSON.stringify(vals);
-  http.send(telemetry);
+  let mag = getTotalAcceleration();
+  if (mag > 0.6) {
+    telemetry = JSON.stringify(vals);
+    http.send(telemetry);
+    dact.style.background = 'green';
+    dact.innerHTML = "<b> Moving </b>";
+  } else {
+    dact.style.background = 'blue';
+    dact.innerHTML = "<b> Stopped </b>";
+  }
 }
 
 function getTotalAcceleration() {
   vals.x = acc.x.toFixed(3);
   vals.y = acc.y.toFixed(3);
   vals.z = acc.z.toFixed(3);
-  return Math.sqrt(Math.pow(acc.x, 2) + Math.pow(acc.y, 2) + Math.pow(acc.z, 2) )
+  return Math.sqrt( Math.pow(vals.x, 2) + Math.pow(vals.y, 2) + Math.pow(vals.z, 2) );
 }
