@@ -5,7 +5,7 @@ let zval = document.getElementById('z_value');
 let derr = document.getElementById('div-error');
 let dact = document.getElementById('div-activity');
 
-let acc = new Accelerometer({ frequency : 1 });
+let acc = new Accelerometer({ frequency : 60 });
 
 // Thingsboard stuffs
 const ACCESS_TOKEN_G = '6WTHnnVbJdlrX8QcOSWj';
