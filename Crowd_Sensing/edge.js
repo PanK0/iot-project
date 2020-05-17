@@ -21,7 +21,7 @@ let vals = {
 
 let activity = {
   'moving' = 0
-}
+};
 let telemetry = JSON.stringify(activity);
 
 // Load the code when the page is ready
