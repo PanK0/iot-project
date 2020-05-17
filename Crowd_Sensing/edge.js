@@ -60,8 +60,6 @@ function sendValues() {
     dact.style.background = 'green';
     dact.innerHTML = "<b> Moving </b>" + pippo.toFixed(3);
   } else {
-    telemetry = JSON.stringify(vals);
-    http.send(telemetry);
     dact.style.background = 'blue';
     dact.innerHTML = "<b> Stopped </b>" + pippo.toFixed(3);
   }
