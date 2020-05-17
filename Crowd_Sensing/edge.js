@@ -46,6 +46,9 @@ $(document).ready(() => {
 // puts the data into the corresponding field of the html page.
 function getAccelerometerValues() {
   acc.onreading = () => {
+    xval.innerHTML = acc.x.toFixed(3);
+    yval.innerHTML = acc.y.toFixed(3);
+    zval.innerHTML = acc.z.toFixed(3);
     // Data must be sent on reading!
     this.sendValues();
   }
