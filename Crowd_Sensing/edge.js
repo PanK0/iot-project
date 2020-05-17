@@ -5,7 +5,7 @@ let zval = document.getElementById('z_value');
 let derr = document.getElementById('div-error');
 let dact = document.getElementById('div-activity');
 
-let acc = new Accelerometer({ frequency : 60 });
+let acc = new Accelerometer({ frequency : 1 });
 
 // Thingsboard stuffs
 const ACCESS_TOKEN_G = '6WTHnnVbJdlrX8QcOSWj';
@@ -37,9 +37,9 @@ $(document).ready(() => {
 // puts the data into the corresponding field of the html page.
 function getAccelerometerValues() {
   acc.onreading = () => {
-    xval.innerHTML = acc.x.toFixed(3);
-    yval.innerHTML = acc.y.toFixed(3);
-    zval.innerHTML = acc.z.toFixed(3);
+    xval.innerHTML = acc.x.toFixed(3) * 9.81;
+    yval.innerHTML = acc.y.toFixed(3) * 9.81;
+    zval.innerHTML = acc.z.toFixed(3) * 9.81;
 
     // Data must be sent on reading!
     this.sendValues();
@@ -50,7 +50,7 @@ function getAccelerometerValues() {
 // Send values to thingsboard
 function sendValues() {
   let mag = getTotalAcceleration();
-  if (mag > 9.81 + 0.2) {
+  if (mag > 0.6) {
     http = new XMLHttpRequest();
     http.open("POST", TOPIC);
     telemetry = JSON.stringify(vals);
@@ -65,8 +65,8 @@ function sendValues() {
 }
 
 function getTotalAcceleration() {
-  vals.x = acc.x.toFixed(3);
-  vals.y = acc.y.toFixed(3);
-  vals.z = acc.z.toFixed(3);
+  vals.x = acc.x.toFixed(3) * 9.81;
+  vals.y = acc.y.toFixed(3) * 9.81;
+  vals.z = acc.z.toFixed(3) * 9.81;
   return Math.sqrt( (vals.x * vals.x) + (vals.y * vals.y) + (vals.z * vals.z) );
 }
