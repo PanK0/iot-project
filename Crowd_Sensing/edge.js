@@ -7,7 +7,7 @@ let derr = document.getElementById('div-error');
 let acc = new Accelerometer({ frequency : 1 });
 
 // Thingsboard stuffs
-const ACCESS_TOKEN_G = 'VzGjauPoPkwpUhcbdmJw';
+const ACCESS_TOKEN_G = '6WTHnnVbJdlrX8QcOSWj';
 const TOPIC = 'https://demo.thingsboard.io/api/v1/' + ACCESS_TOKEN_G +'/telemetry';
 const PORT = 1883;
 let http = new XMLHttpRequest();
@@ -55,4 +55,11 @@ function sendValues() {
   vals.z = zval.innerHTML;
   telemetry = JSON.stringify(vals);
   http.send(telemetry);
+}
+
+function getTotalAcceleration() {
+  vals.x = acc.x.toFixed(3);
+  vals.y = acc.y.toFixed(3);
+  vals.z = acc.z.toFixed(3);
+  return Math.sqrt(Math.pow(acc.x, 2) + Math.pow(acc.y, 2) + Math.pow(acc.z, 2) )
 }
