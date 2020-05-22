@@ -34,11 +34,13 @@ Code and README in the [LoRaWAN_Station](https://github.com/PanK0/iot-project/tr
 # [Assignment 4](https://github.com/PanK0/iot-project/tree/master/Crowd_Sensing) [[Try me!](https://pank0.github.io/iot-project/Crowd_Sensing/)]
 Refs @ http://ichatz.me/Site/InternetOfThings2020-Assignment4
 
-Take a look at the YOUTUBE PRESENTATION
+Take a look at the [YOUTUBE PRESENTATION](https://youtu.be/bMXfNftw-ao)
 
 Don't forget the [TUTORIAL](https://www.hackster.io/panicik/iot-assignment-4-f9083e)
 
 Code and README in the [Crowd_Sensing](https://github.com/PanK0/iot-project/tree/master/Crowd_Sensing) folder
+
+
 
 
 ## Requirements:

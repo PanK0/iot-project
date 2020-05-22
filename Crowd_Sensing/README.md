@@ -1,5 +1,3 @@
-Readme Assignment 4
-
 # Crowd_Sensing
 In this assignment we will build a mobile application to provide a crowd-sensing extension to our application.
 
@@ -109,3 +107,4 @@ In this simple calculus, due to empirical experiences, I have set that when the 
 
 ## Tutorial
 Hackster tutorial [here](https://www.hackster.io/panicik/iot-assignment-4-f9083e)!
+Youtube video [here](https://youtu.be/bMXfNftw-ao)!
